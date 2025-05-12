@@ -1,16 +1,16 @@
+package br.com.sesse.quebradoflix.principal;
+
 import br.com.sesse.quebradoflix.calculos.CalculadoraDeTempo;
 import br.com.sesse.quebradoflix.calculos.FiltroRecomendacao;
 import br.com.sesse.quebradoflix.model.Epsodio;
 import br.com.sesse.quebradoflix.model.Filme;
 import br.com.sesse.quebradoflix.model.Serie;
-import br.com.sesse.quebradoflix.model.Titulo;
-import br.com.sesse.quebradoflix.calculos.CalculadoraDeTempo;
+
+import java.util.ArrayList;
 
 public class Principal {
     public static void main(String[] args) {
-        Filme meuFilme = new Filme();
-        meuFilme.setNome("O poderoso chefão");
-        meuFilme.setAnoDeLancamento(1970);
+        Filme meuFilme = new Filme("O poderoso Chefão", 1970,"José");
         meuFilme.setDuracaoEmMinutos(180);
         System.out.println("Duração do filme: " + meuFilme.getDuracaoEmMinutos());
 
@@ -24,18 +24,13 @@ public class Principal {
         //meuFilme.totalDeAvaliacoes = 1;
         //System.out.println(meuFilme.pegaMedia());
 
-        Serie lost = new Serie();
-        lost.setNome("Lost");
-        lost.setAnoDeLancamento(2000);
+        Serie lost = new Serie("Lost", 2000,10);
         lost.exibeFichaTecnica();
         lost.setTemporadas(10);
-        lost.setEpisodiosPorTemporada(10);
         lost.setMinutosPorEpisodio(50);
         System.out.println("Duração para maratonar Lost: " + lost.getDuracaoEmMinutos());
 
-        Filme outroFilme = new Filme();
-        outroFilme.setNome("Avatar");
-        outroFilme.setAnoDeLancamento(2023);
+        Filme outroFilme = new Filme("Avatar", 2023,"Maria");
         outroFilme.setDuracaoEmMinutos(200);
 
         CalculadoraDeTempo calculadora = new CalculadoraDeTempo();
@@ -48,9 +43,23 @@ public class Principal {
         filtro.filtra(meuFilme);
 
         Epsodio epsodio = new Epsodio();
-       epsodio.setNumero(1);
-       epsodio.setSerie(lost);
-       epsodio.setTotalVisualizacoes(300);
-       filtro.filtra(epsodio);
+        epsodio.setNumero(1);
+        epsodio.setSerie(lost);
+        epsodio.setTotalVisualizacoes(300);
+        filtro.filtra(epsodio);
+
+        var filme3 = new Filme("DogVille", 2003, "Maria José");
+        filme3.setDuracaoEmMinutos(200);
+        filme3.avalia(10);
+
+        ArrayList<Filme> listaDeFilmes = new ArrayList<>();
+        listaDeFilmes.add(filme3);
+        listaDeFilmes.add(meuFilme);
+        listaDeFilmes.add(outroFilme);
+
+        System.out.println("Tamanho da lista "+ listaDeFilmes.size());
+        System.out.println("Primeiro filme " + listaDeFilmes.get(0).getNome());
+
+        System.out.println(listaDeFilmes);
     }
 }
