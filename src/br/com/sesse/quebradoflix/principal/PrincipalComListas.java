@@ -3,7 +3,7 @@ import br.com.sesse.quebradoflix.model.Filme;
 import br.com.sesse.quebradoflix.model.Serie;
 import br.com.sesse.quebradoflix.model.Titulo;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class PrincipalComListas {
     public static void main(String[] args) {
@@ -33,5 +33,20 @@ public class PrincipalComListas {
             System.out.println("Classificação " +((Filme) item).getClassificacao());
             }
         }
+
+        List<String> buscaProArtista = new LinkedList<>();
+        buscaProArtista.add("Adam Sandler");
+        buscaProArtista.add("zé");
+        buscaProArtista.add("Jaqueline");
+        System.out.println(buscaProArtista);
+        Collections.sort(buscaProArtista);
+        System.out.println(buscaProArtista);
+
+        Collections.sort(lista);
+        System.out.println("Lista de titulos ordenados: ");
+        System.out.println(lista);
+        lista.sort(Comparator.comparing(Titulo::getAnoDeLancamento));
+        System.out.println(lista);
+
     }
 }
